@@ -1,5 +1,1 @@
-# Ignorer les fichiers contenant des clés API
-multilang_site/settings.py
-
-# Ignorer les fichiers spécifiques contenant des clés API
-multilang_site/api_keys.py
+*/settings.py
