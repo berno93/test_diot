@@ -1,0 +1,82 @@
+<!-- main/templates/main/chatbot_index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% load i18n %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="{% static 'css/chatbot.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+
+<body id="body">
+    <nav id="navbar" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Accueil</a>
+            <a class="navbar-brand" href="{% url 'blog_post_new' %}">{% trans "New Post" %}</a>
+            <a class="navbar-brand" href="/chatbot">Chatbot</a>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <select name="language" class="form-select">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% for lang in LANGUAGES %}
+                    {% if lang.0 == LANGUAGE_CODE %}
+                    <option value="{{ lang.0 }}" selected>{{ lang.1 }}</option>
+                    {% else %}
+                    <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                <input type="submit" value="{% trans 'Change language' %}" class="btn btn-primary mt-2">
+            </form>
+        </div>
+    </nav>
+    <div id="chatbox_index">
+        <h1>Chatbot</h1>
+        <div id="chatbox">
+            <div id="messages"></div>
+            <input type="text" id="user_input" class="form-control" placeholder="{% trans 'Tape your message here' %} ...">
+            <button onclick="sendMessage()" class="btn btn-success" id="button-send">{% trans "Send" %}</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('user_input').value;
+            fetch('/chatbot/get_response/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: `message=${userInput}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const messages = document.getElementById('messages');
+                    const userMessage = document.createElement('div');
+                    userMessage.textContent = `You: ${userInput}`;
+                    messages.appendChild(userMessage);
+
+                    const botMessage = document.createElement('div');
+                    botMessage.textContent = `Bot: ${data.response}`;
+                    userMessage.classList.add('div-user-message');
+                    botMessage.classList.add('div-bot-message');
+                    messages.appendChild(botMessage);
+
+                    document.getElementById('user_input').value = '';
+                });
+        }
+    </script>
+</body>
+
+</html>
