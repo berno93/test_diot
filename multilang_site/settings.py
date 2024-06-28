@@ -153,4 +153,3 @@ APPEND_SLASH = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'sk-proj-FRnIOzqFa9vLnlIU0c5RT3BlbkFJQTCIW1nMlQTtMGs7gOJ5')

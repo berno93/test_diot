@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.conf import settings
+
+from multilang_site import api_keys
 from .models import BlogPost
 from .forms import BlogPostForm
 import openai 
@@ -47,7 +49,7 @@ def blog_post_delete(request, pk):
         return redirect('blog_post_list')
     return render(request, 'main/blog_post_confirm_delete.html', {'post': post})
 
-openai.api_key = settings.OPENAI_API_KEY
+openai.api_key = api_keys.OPENAI_API_KEY
 
 def chatbot_index(request):
     return render(request, 'chatbot_index.html')
