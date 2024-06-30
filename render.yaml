@@ -5,6 +5,8 @@ services:
     buildCommand: "pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput"
     startCommand: "gunicorn multilang_site.wsgi:application --bind 0.0.0.0:$PORT --log-file -"
     envVars:
+      - key: PORT
+        value: '8000'
       - key: SECRET_KEY
         value: <django-insecure-!y6y6x5d8c0jdk+qcti9-p9&9^hsye9qb+a3o$ikycsy6@j!s6>
       - key: DEBUG
