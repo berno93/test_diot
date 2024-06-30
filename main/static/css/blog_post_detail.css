@@ -4,6 +4,7 @@
   background-repeat: no-repeat; /* Pour ne pas répéter l'image */
   background-position: center; /* Pour centrer l'image */
   text-align: -webkit-center;
+  margin-bottom: 20px;
 }
 
 

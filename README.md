@@ -16,6 +16,11 @@ Etapes à suivre pour éxécuter le projet :
 - Allez dans le fichier settings.py et ajouter cette ligne en modifiant "votre-clé-secrete" par la clé que vous avez générer :
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'votre-clé-secrete')
 
+## Lancer le serveur
+
+- Activez l'environnement du projet : .\env\Scripts\activate    
+- Lancer le serveur : python manage.py runserver   
+
 
 
 
