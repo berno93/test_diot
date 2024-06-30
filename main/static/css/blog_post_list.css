@@ -1,8 +1,8 @@
 #body {
   background-image: url('https://wallpaper.forfun.com/fetch/e8/e859248bc2d5ef708980128be1d95647.jpeg');
-  background-size: cover; /* Pour que l'image couvre tout l'écran */
-  background-repeat: no-repeat; /* Pour ne pas répéter l'image */
-  background-position: center; /* Pour centrer l'image */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
   text-align: -webkit-center;
 }
 
@@ -18,9 +18,7 @@
   background: white;
   padding: 10px;
   margin: 10px auto 10px auto;
-  /* min-width: -webkit-fill-available; */
   width: 50%;
-  /* margin: 0px auto; */
 }
 
 #title {
@@ -28,11 +26,11 @@
 }
 
 .highlight-div {
-  transition: background-color 0.3s ease; /* Pour une transition douce */
+  transition: background-color 0.3s ease; 
 }
 
 .highlight-div:hover {
-  background-color: #f0f0f0; /* Couleur de surbrillance */
+  background-color: #f0f0f0; 
 }
 
 #navbar {

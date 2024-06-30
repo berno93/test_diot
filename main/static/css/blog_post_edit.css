@@ -1,8 +1,8 @@
 #body {
   background-image: url('https://wallpaper.forfun.com/fetch/e8/e859248bc2d5ef708980128be1d95647.jpeg');
-  background-size: cover; /* Pour que l'image couvre tout l'écran */
-  background-repeat: no-repeat; /* Pour ne pas répéter l'image */
-  background-position:center; /* Pour centrer l'image */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position:center; 
   text-align: -webkit-center;
 }
 
