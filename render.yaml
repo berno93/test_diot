@@ -3,7 +3,7 @@ services:
     name: multilang-site
     env: python
     buildCommand: "pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput"
-    start_cmd: gunicorn multilang_site.wsgi:application --bind 0.0.0.0:$PORT
+    start_cmd: gunicorn multilang_site.wsgi:application --bind 0.0.0.0:$PORT --access-logfile - --error-logfile -
     health_check_path: /
     env_vars:
       PYTHONUNBUFFERED: 'true'
